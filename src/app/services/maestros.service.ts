@@ -68,10 +68,7 @@ export class MaestrosService {
 
     if(!this.validatorService.required(data["born_date"])){
       error["born_date"] = this.errorService.required;
-    }/*else if(!this.validatorService.dateBetween(data["born_date"],new Date(),new Date())){
-      //error["born_date"] = this.errorService.dateBetween(new Date(),new Date());
-      alert("La fecha de nacimiento no es válida");
-    }*/
+    }
 
     if(!this.validatorService.required(data["rfc"])){
       error["rfc"] = this.errorService.required;
