@@ -93,7 +93,7 @@ export class MaestrosService {
     }
 
     if(!this.validatorService.min(data["materias_impartir"],1)){
-      error["materias_impartir"] = this.errorService.required;
+      error["materias_impartir"] = "Selecciona al menos una materia";
     }
 
     //Return arreglo
