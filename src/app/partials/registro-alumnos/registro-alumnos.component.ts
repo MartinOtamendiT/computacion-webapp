@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 // import { MatDatepickerControl, MatDatepickerPanel } from '@angular/material/datepicker';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 declare var $: any;
@@ -24,7 +25,8 @@ export class RegistroAlumnosComponent implements OnInit {
 
 
   constructor(
-    private alumnosService: AlumnosService
+    private alumnosService: AlumnosService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +48,24 @@ export class RegistroAlumnosComponent implements OnInit {
       return false;
     }
 
-    // TODO:Después registraremos alumno
+    //Validamos que las contraseñas coincidan
+    // Validar la contraseña
+    if(this.alumno.password == this.alumno.confirmar_password){
+      //Aquí si todo es correcto vamos a registrar - aquí se manda a consumir el servicio
+      this.alumnosService.registrarAlumno(this.alumno).subscribe(
+        (response)=>{
+          alert("Alumno registrado corrrectamente");
+          console.log("Alumno registrado: ", response);
+          this.router.navigate(["/"])
+        }, (error)=>{
+          alert("No se pudo registrar al Alumno");
+        }
+      );
+    }else{
+      alert("Las contraseñas no coinciden");
+      this.alumno.password = "";
+      this.alumno.confirmar_password="";
+    }
   }
 
   public actualizar() {

@@ -1,7 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ValidatorService } from './tools/validator.service';
 import { ErrorsService } from './tools/errors.service';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -109,4 +115,11 @@ export class AlumnosService {
     //Return arreglo
     return error;
   }
+
+  //Aquí van los servicios HTTP
+  //Servicio para regustrar un nuevo alumno
+  public registrarAlumno (data: any): Observable <any>{
+    return this.http.post<any>(`${environment.url_api}/alumno/`,data, httpOptions);
+  }
+
 }

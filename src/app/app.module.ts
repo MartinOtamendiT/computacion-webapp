@@ -27,6 +27,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
+import { AdminScreenComponent } from './screens/admin-screen/admin-screen.component';
+import { AlumnosScreenComponent } from './screens/alumnos-screen/alumnos-screen.component';
+import { MaestrosScreenComponent } from './screens/maestros-screen/maestros-screen.component';
 
 
 @NgModule({
@@ -37,7 +41,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     NavbarComponent,
     RegistroAdminComponent,
     RegistroAlumnosComponent,
-    RegistroMaestrosComponent
+    RegistroMaestrosComponent,
+    HomeScreenComponent,
+    AdminScreenComponent,
+    AlumnosScreenComponent,
+    MaestrosScreenComponent
   ],
   imports: [
     BrowserModule,

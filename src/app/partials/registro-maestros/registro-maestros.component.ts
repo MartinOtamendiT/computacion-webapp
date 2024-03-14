@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MaestrosService } from 'src/app/services/maestros.service';
 declare var $: any;
 
@@ -32,7 +33,8 @@ export class RegistroMaestrosComponent implements OnInit{
 
 
   constructor(
-    private maestrosService: MaestrosService
+    private maestrosService: MaestrosService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -79,8 +81,24 @@ export class RegistroMaestrosComponent implements OnInit{
     if (!$.isEmptyObject(this.errors)) {
       return false;
     }
-
-    // TODO:Después registraremos maestro
+    //Validamos que las contraseñas coincidan
+    // Validar la contraseña
+    if(this.maestro.password == this.maestro.confirmar_password){
+      //Aquí si todo es correcto vamos a registrar - aquí se manda a consumir el servicio
+      this.maestrosService.registrarMaestro(this.maestro).subscribe(
+        (response)=>{
+          alert("Maestro registrado corrrectamente");
+          console.log("Maestro registrado: ", response);
+          this.router.navigate(["/"])
+        }, (error)=>{
+          alert("No se pudo registrar al Maestro");
+        }
+      );
+    }else{
+      alert("Las contraseñas no coinciden");
+      this.maestro.password = "";
+      this.maestro.confirmar_password="";
+    }
   }
 
   //Funciones para password
