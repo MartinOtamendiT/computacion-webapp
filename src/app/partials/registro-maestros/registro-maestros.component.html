@@ -87,7 +87,7 @@
 
       <label class="title-materias" for="tipo_usuario">Selecciona las materias a impartir</label>
       <mat-selection-list [(ngModel)]="maestro.materias_impartir">
-        <mat-list-option *ngFor="let materia of materias">
+        <mat-list-option *ngFor="let materia of materias" [value]="materia.name">
           {{ materia.name }}
         </mat-list-option>
       </mat-selection-list>
