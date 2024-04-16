@@ -94,7 +94,7 @@ export class MaestrosScreenComponent implements OnInit{
 
    //Funcion para editar
    public goEditar(idUser: number){
-    this.router.navigate(["registro/"+idUser]);
+    this.router.navigate(["registro-usuarios/maestro/"+idUser]);
   }
 
   public delete(idUser: number){

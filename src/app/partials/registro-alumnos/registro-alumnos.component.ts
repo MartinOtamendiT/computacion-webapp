@@ -12,6 +12,7 @@ declare var $: any;
 
 export class RegistroAlumnosComponent implements OnInit {
   @Input() rol: string = "";
+  @Input() datos_User: any = {};
 
   public alumno: any = {};
   public editar: boolean = false;
