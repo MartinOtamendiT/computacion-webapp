@@ -87,9 +87,25 @@ export class RegistroScreenComponent implements OnInit {
           this.user.email = response.user.email;
           this.user.tipo_usuario = this.rol;
           this.isMaestro = true;
+          this.user.materias_impartir = response.materias_json
           console.log("Datos maestro: ", this.user);
         }, (error)=>{
           alert("No se pudieron obtener los datos del usuario para editar maestro");
+        }
+      );
+    }else if(this.rol == "alumno"){
+      this.alumnosService.getAlumnoByID(this.idUser).subscribe(
+        (response)=>{
+          this.user = response;
+          //Agregamos valores faltantes
+          this.user.first_name = response.user.first_name;
+          this.user.last_name = response.user.last_name;
+          this.user.email = response.user.email;
+          this.user.tipo_usuario = this.rol;
+          this.isAlumno = true;
+          console.log("Datos alumno: ", this.user);
+        }, (error)=>{
+          alert("No se pudieron obtener los datos del usuario para editar alumno");
         }
       );
     }//TODO: Agregar función para obtener alumno por ID

@@ -88,8 +88,7 @@
       <label class="title-materias" for="tipo_usuario">Selecciona las materias a impartir</label>
       <mat-selection-list [(ngModel)]="maestro.materias_impartir">
         <mat-list-option *ngFor="let materia of materias" [value]="materia.name">
-          <mat-checkbox class="checkbox-item opc-sc" name="opsc" (change)="checkboxChange($event)" value="{{materia.name}}" [checked]="revisarSeleccion(materia.name)"></mat-checkbox>
-          <div class="d-checkbox-nombre">{{materia.name}}</div>
+          {{materia.name}}
         </mat-list-option>
       </mat-selection-list>
 

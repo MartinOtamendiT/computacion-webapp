@@ -73,7 +73,20 @@ export class RegistroMaestrosComponent implements OnInit{
     {id:'5', value: 'Matemáticas'},
   ]
 
-  materias: materias_para_impartir[] = [
+  // public materias:any[]= [
+  //   {value: '1', nombre: 'Aplicaciones Web'},
+  //   {value: '2', nombre: 'Programación 1'},
+  //   {value: '3', nombre: 'Bases de datos'},
+  //   {value: '4', nombre: 'Tecnologías Web'},
+  //   {value: '5', nombre: 'Minería de datos'},
+  //   {value: '6', nombre: 'Desarrollo móvil'},
+  //   {value: '7', nombre: 'Estructuras de datos'},
+  //   {value: '8', nombre: 'Administración de redes'},
+  //   {value: '9', nombre: 'Ingeniería de Software'},
+  //   {value: '10', nombre: 'Administración de S.O.'},
+  // ];
+
+  materias: materias_para_impartir[]   = [
     {name:'Aplicaciones web', selected: false},
     {name:'Programación 1', selected: false},
     {name:'Bases de datos', selected: false},
