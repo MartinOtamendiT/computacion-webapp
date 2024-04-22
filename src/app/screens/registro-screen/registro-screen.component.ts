@@ -108,7 +108,7 @@ export class RegistroScreenComponent implements OnInit {
           alert("No se pudieron obtener los datos del usuario para editar alumno");
         }
       );
-    }//TODO: Agregar función para obtener alumno por ID
+    }
   }
 
 

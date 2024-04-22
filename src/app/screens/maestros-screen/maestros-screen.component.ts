@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { FacadeService } from 'src/app/services/facade.service';
 import { MaestrosService } from 'src/app/services/maestros.service';
+import { EliminarUserModalComponent } from 'src/app/modals/eliminar-user-modal/eliminar-user-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-maestros-screen',
@@ -26,6 +28,7 @@ export class MaestrosScreenComponent implements OnInit{
     public facadeService: FacadeService,
     private maestrosService:MaestrosService,
     private router: Router,
+    public dialog: MatDialog
   ){}
 
   ngOnInit(): void {
@@ -98,7 +101,22 @@ export class MaestrosScreenComponent implements OnInit{
   }
 
   public delete(idUser: number){
+    const dialogRef = this.dialog.open(EliminarUserModalComponent,{
+      data: {id: idUser, rol: 'maestro'}, //Se pasan valores a través del componente
+      height: '288px',
+      width: '328px',
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.isDelete){
+        console.log("Maestro eliminado");
+        //Recargar página
+        window.location.reload();
+      }else{
+        alert("Maestro no eliminado ");
+        console.log("No se eliminó al maestro");
+      }
+    });
   }
 
 }//Cierre de la clase
