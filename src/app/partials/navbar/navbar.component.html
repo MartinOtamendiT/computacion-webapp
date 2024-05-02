@@ -21,7 +21,7 @@
             <li class="nav-item">
               <a class="nav-link">Lista de materias</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="rol=='administrador'">
               <a class="nav-link" id="graficas" (click)="clickNavLink('graficas')">Gráficas</a>
             </li>
             <li class="nav-item dropdown">
@@ -42,14 +42,14 @@
         </ul>
         <form class="d-flex">
           <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded='false'>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-person-circle"></i>
             </button>
+            <ul class="dropdown-menu">
+              <li *ngIf="token != ''"><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
+              <li *ngIf="tipo=='registro-usuarios' && token == ''"><a class="dropdown-item" href="#">Iniciar Sesión</a></li>
+            </ul>
           </div>
-          <ul class="dropdown-menu">
-            <li *ngIf="token != ''"><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
-            <li *ngIf="tipo == 'registro-usuarios' && token == ''"><a class="dropdown-item" href="#">Iniciar sesión</a></li>
-          </ul>
         </form>
       </div>
     </div>
