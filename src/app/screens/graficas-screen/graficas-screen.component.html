@@ -33,7 +33,7 @@
               </div>
               <!-- Barras -->
               <div class="col-6 graph">
-                <canvas
+                <canvas *ngIf="availableData"
                   baseChart
                   width="600"
                   height="400"
