@@ -16,54 +16,59 @@ export class GraficasScreenComponent implements OnInit{
   //Variables
   public total_user: any = {};
   public availableData = false;
+
   //Histograma
   lineChartData = {
-    labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    labels: ["Administradores", "Maestros", "Alumnos"],
     datasets: [
       {
-        data:[98, 34, 43, 54, 28, 74, 93],
+        data: {},
         label: 'Registro de materias',
         backgroundColor: '#F88406'
       }
     ]
   }
   lineChartOption = {
-    responsive:false
+    responsive:false,
+    plugins: {
+      legend: {
+        display: false
+      }
+    }
   }
   lineChartPlugins = [ DatalabelsPlugin ];
 
-
   ///Barras
   barChartData = {
-    labels: ["Desarrollo Web", "Minería de Datos", "Redes", "Móviles", "Matemáticas"],
+    labels: ["Administradores", "Maestros", "Alumnos"],
     datasets: [
       {
-        data:[this.total_user.admins, 43, 54, 28, 74],
-        label: 'Registro de materias',
+        data:{},
+        // label: 'Registro de materias',
         backgroundColor: [
-          '#F88406',
-          '#FCFF44',
-          '#82D3FB',
           '#FB82F5',
-          '#2AD84A'
-        ]
+          '#FCFF44',
+          '#82D3FB'
+        ],
       }
     ]
   }
   barChartOption = {
-    responsive:false
+    responsive:false,
+    plugins: {
+      legend: {
+        display: false
+      }
+    }
   }
   barChartPlugins = [ DatalabelsPlugin ];
 
-
-
-  //Circular
   //Circular
   pieChartData = {
     labels: ["Administradores", "Maestros", "Alumnos"],
     datasets: [
       {
-        data:[89, 34, 43],
+        data: {},
         label: 'Registro de usuarios',
         backgroundColor: [
           '#FCFF44',
@@ -83,7 +88,7 @@ export class GraficasScreenComponent implements OnInit{
     labels: ["Administradores", "Maestros", "Alumnos"],
     datasets: [
       {
-        data:[89, 34, 43],
+        data: {},
         label: 'Registro de usuarios',
         backgroundColor: [
           '#F88406',
@@ -121,26 +126,9 @@ export class GraficasScreenComponent implements OnInit{
 
   //Método para graficar los datos.
   public graficarDatos(){
-    console.log(this.availableData)
-    if(this.availableData){
-      this.barChartData = {
-        labels: ["Admins", "Maestros", "Alumnos"],
-        datasets: [
-          {
-            data: [this.total_user.admins,this.total_user.maestros,this.total_user.alumnos],
-            label: 'Registro de materias',
-            backgroundColor: [
-              '#F88406',
-              '#FCFF44',
-              '#82D3FB'
-            ]
-          }
-        ]
-      }
-      this.barChartOption = {
-        responsive:false
-      }
-      this.barChartPlugins = [ DatalabelsPlugin ];
-    }
+    this.barChartData.datasets[0].data= [this.total_user.admins,this.total_user.maestros,this.total_user.alumnos]
+    this.lineChartData.datasets[0].data= [this.total_user.admins,this.total_user.maestros,this.total_user.alumnos]
+    this.pieChartData.datasets[0].data= [this.total_user.admins,this.total_user.maestros,this.total_user.alumnos]
+    this.doughnutChartData.datasets[0].data= [this.total_user.admins,this.total_user.maestros,this.total_user.alumnos]
   }
 }
