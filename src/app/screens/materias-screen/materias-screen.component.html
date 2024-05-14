@@ -44,34 +44,9 @@
                 <td mat-cell *matCellDef="let element"> {{element.horario}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="lun">
-              <th mat-header-cell *matHeaderCellDef> Lunes </th>
-              <td mat-cell *matCellDef="let element"> {{element.lun}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="mar">
-              <th mat-header-cell *matHeaderCellDef> Martes </th>
-              <td mat-cell *matCellDef="let element"> {{element.mar}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="mie">
-              <th mat-header-cell *matHeaderCellDef> Miercoles </th>
-              <td mat-cell *matCellDef="let element"> {{element.mie}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="jue">
-              <th mat-header-cell *matHeaderCellDef> Jueves </th>
-              <td mat-cell *matCellDef="let element"> {{element.jue}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="vie">
-              <th mat-header-cell *matHeaderCellDef> Viernes </th>
-              <td mat-cell *matCellDef="let element"> {{element.vie}} </td>
-            </ng-container>
-            
-            <ng-container matColumnDef="sab">
-              <th mat-header-cell *matHeaderCellDef> Sabado </th>
-              <td mat-cell *matCellDef="let element"> {{element.sab}} </td>
+            <ng-container matColumnDef="dias_materia">
+              <th mat-header-cell *matHeaderCellDef> Días de materias </th>
+              <td mat-cell *matCellDef="let element"> {{element.dias_materia}} </td>
             </ng-container>
 
             <ng-container matColumnDef="salon">

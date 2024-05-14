@@ -10,24 +10,24 @@
         <!-- Campos del formulario -->
         <mat-form-field class="mat-input" appearance="outline">
           <mat-label>NRC</mat-label>
-          <input matInput [(ngModel)]="materias.nrc" name="id" placeholder="Escribe la clave del maestro" required>
+          <input matInput [(ngModel)]="materia.nrc" name="NRC" placeholder="Escribe NRC de la materia" required>
         </mat-form-field>
         <div *ngIf="errors.nrc" class="invalid-feedback">{{ errors.nrc }}</div>
 
         <mat-form-field class="mat-input" appearance="outline">
           <mat-label>Nombre de la materia</mat-label>
-          <input matInput [(ngModel)]="materias.nombre_materia" placeholder="Escribe nombre">
+          <input matInput [(ngModel)]="materia.nombre_materia" name="nombre_materia" placeholder="Escribe nombre">
         </mat-form-field>
         <div *ngIf="errors.nombre_materia" class="invalid-feedback">{{ errors.nombre_materia }}</div>
 
         <mat-form-field class="mat-input" appearance="outline">
           <mat-label>Sección</mat-label>
-          <input matInput [(ngModel)]="materias.seccion" placeholder="Escribe apellidos">
+          <input matInput [(ngModel)]="materia.seccion" placeholder="Escribe apellidos">
         </mat-form-field>
         <div *ngIf="errors.seccion" class="invalid-feedback">{{ errors.seccion }}</div>
 
         <label class="title-materias" for="tipo_usuario">Días</label>
-        <mat-selection-list [(ngModel)]="materias.dias_materias">
+        <mat-selection-list [(ngModel)]="materia.dias_materia">
             <mat-list-option *ngFor="let dia of dias" [value]="dia.name">
             {{dia.name}}
             </mat-list-option>
@@ -35,28 +35,28 @@
 
         <mat-form-field class="mat-input" appearance="outline">
             <mat-label>Horario de inicio</mat-label>
-                <input matInput [ngxTimepicker]="fromTimepicker" placeholder="Select time" [(ngModel)]="materias.horario">
+                <input matInput [ngxTimepicker]="fromTimepicker" placeholder="Select time" [(ngModel)]="materia.horario_inicio">
                 <ngx-material-timepicker #fromTimepicker></ngx-material-timepicker>
             </mat-form-field>
-        <div *ngIf="errors.test" class="invalid-feedback">{{ errors.test }}</div>
+        <div *ngIf="errors.horario_inicio" class="invalid-feedback">{{ errors.horario_inicio }}</div>
 
           <mat-form-field class="mat-input" appearance="outline">
             <mat-label>Horario de fin</mat-label>
-                <input matInput [ngxTimepicker]="toTimepicker" placeholder="Select time" [(ngModel)]="materias.horario">
+                <input matInput [ngxTimepicker]="toTimepicker" placeholder="Select time" [(ngModel)]="materia.horario_fin">
                 <ngx-material-timepicker #toTimepicker></ngx-material-timepicker>
             </mat-form-field>
-          <div *ngIf="errors.test" class="invalid-feedback">{{ errors.test }}</div>
+          <div *ngIf="errors.horario_fin" class="invalid-feedback">{{ errors.horario_fin }}</div>
 
           <mat-form-field class="mat-input" appearance="outline">
             <mat-label>Salon</mat-label>
-            <input matInput [(ngModel)]="materias.salon" placeholder="Escribe nombre">
+            <input matInput [(ngModel)]="materia.salon" placeholder="Escribe nombre">
           </mat-form-field>
           <div *ngIf="errors.salon" class="invalid-feedback">{{ errors.salon }}</div>
 
         <mat-form-field class="mat-input" appearance="outline">
           <mat-label>Programa Educativo</mat-label>
-          <mat-select [(ngModel)]="materias.programa_educativo">
-            <mat-option *ngFor="let programa of programa_educativo" [value]="programa.id">
+          <mat-select [(ngModel)]="materia.programa_educativo">
+            <mat-option *ngFor="let programa of programa_educativo" [value]="programa.value">
               {{programa.value}}
             </mat-option>
           </mat-select>

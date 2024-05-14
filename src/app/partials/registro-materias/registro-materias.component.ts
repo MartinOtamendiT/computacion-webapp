@@ -25,7 +25,7 @@ export class RegistroMateriasComponent implements OnInit {
 
   @Input() datos_materia : any = {};
 
-  public materias: any = {};
+  //public materias: any = {};
   public token: string = "";
   public editar: boolean = false;
   public errors: any = {};
@@ -79,11 +79,25 @@ export class RegistroMateriasComponent implements OnInit {
   public registrar() {
     //Validar
     this.errors = [];
-
     this.errors = this.materiasService.validarMateria(this.materia, this.editar);
+    console.log(this.errors)
     if (!$.isEmptyObject(this.errors)) {
       return false;
     }
+    
+    this.materiasService.registrarMateria(this.materia).subscribe(
+      (response)=>{
+        alert("Materia registrada correctamente");
+        console.log("Materia registrada: ", response);
+        if(this.token != ""){
+          this.router.navigate(["home"]);
+        }else{
+          this.router.navigate(["/"]);
+        }
+      }, (error)=>{
+        alert("No se pudo registrar materia");
+      }
+    )
   }
 
 

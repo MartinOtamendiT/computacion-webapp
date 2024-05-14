@@ -78,7 +78,7 @@
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Área de investigación</mat-label>
         <mat-select [(ngModel)]="maestro.area_investigacion">
-          <mat-option *ngFor="let area of areas_investiacion" [value]="area.id">
+          <mat-option *ngFor="let area of areas_investiacion" [value]="area.value">
             {{area.value}}
           </mat-option>
         </mat-select>

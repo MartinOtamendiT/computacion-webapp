@@ -19,7 +19,7 @@ export class MateriasScreenComponent implements OnInit{
   public lista_materias: any[] = [];
 
   //Para la tabla
-  displayedColumns: string[] = ['NRC', 'nombre_materia', 'seccion', 'lun', 'mar', 'mie', 'jue', 'vie', 'sab', 'horario', 'salon', 'programa'];
+  displayedColumns: string[] = ['NRC', 'nombre_materia', 'seccion', 'dias_materia', 'horario', 'salon', 'programa'];
   dataSource = new MatTableDataSource<DatosMaterias>(this.lista_materias as DatosMaterias[]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

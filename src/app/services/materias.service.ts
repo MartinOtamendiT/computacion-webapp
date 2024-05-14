@@ -28,7 +28,8 @@ export class MateriasService {
       'nombre_materia':'',
       'seccion': '',
       'dias_materia':[],
-      'horario': '',
+      'horario_inicio': '',
+      'horario_fin': '',
       'salon': '',
       'programa_educativo': '',
     }
@@ -38,8 +39,8 @@ export class MateriasService {
     console.log("Validando materia... ", data);
     let error: any = [];
 
-    if(!this.validatorService.required(data['NRC'])){
-      error['NRC'] = this.errorService.required;
+    if(!this.validatorService.required(data['nrc'])){
+      error['nrc'] = this.errorService.required;
     }
 
     if(!this.validatorService.required(data['nombre_materia'])){
@@ -54,8 +55,11 @@ export class MateriasService {
       error['dias_materia'] = this.errorService.required;
     }
 
-    if(!this.validatorService.required(data['horario'])){
-      error['horario'] = this.errorService.required;
+    if(!this.validatorService.required(data['horario_inicio'])){
+      error['horario_inicio'] = this.errorService.required;
+    }
+    if(!this.validatorService.required(data['horario_fin'])){
+      error['horario_fin'] = this.errorService.required;
     }
     if(!this.validatorService.required(data['salon'])){
       error['salon'] = this.errorService.required;
@@ -72,7 +76,6 @@ export class MateriasService {
   //Aquí van los servicios HTTP
   //Servicio para regustrar un nuevo maestro
   public registrarMateria (data: any): Observable <any>{
-    console.log("Aquí")
     return this.http.post<any>(`${environment.url_api}/materia/`,data, httpOptions);
   }
 
