@@ -3,6 +3,8 @@ import { AdministradorService } from 'src/app/services/administrador.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FacadeService } from 'src/app/services/facade.service';
 import { Location } from '@angular/common';
+import { EditarUserModalComponent } from 'src/app/modals/editar-user-modal/editar-user-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 //Para poder usar jquery definir esto
 declare var $:any;
@@ -33,7 +35,8 @@ export class RegistroAdminComponent implements OnInit {
     private location : Location,
     private router: Router,
     public activatedRoute: ActivatedRoute,
-    private facadeService: FacadeService
+    private facadeService: FacadeService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -101,7 +104,24 @@ export class RegistroAdminComponent implements OnInit {
     }
     console.log("Pasó la validación");
 
-    this.administradoresService.editarAdmin(this.admin).subscribe(
+    this.admin.rol = 'administrador';
+    const dialogRef = this.dialog.open(EditarUserModalComponent,{
+      data: this.admin, //Se pasan valores a través del componente
+      height: '288px',
+      width: '328px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.isEdited){
+        alert("Administrador editado correctamente");
+        //Si se editó, entonces mandar al home
+        this.router.navigate(["home"]);
+      }else{
+        console.log("Edición cancelada");
+      }
+    });
+
+    /*this.administradoresService.editarAdmin(this.admin).subscribe(
       (response)=>{
         alert("Administrador editado correctamente");
         console.log("Admin editado: ", response);
@@ -110,7 +130,7 @@ export class RegistroAdminComponent implements OnInit {
       }, (error)=>{
         alert("No se pudo editar el administrador");
       }
-    );
+    );*/
   }
 
   //Funciones para password

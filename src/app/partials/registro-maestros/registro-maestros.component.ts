@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MaestrosService } from 'src/app/services/maestros.service';
 import { FacadeService } from 'src/app/services/facade.service';
 import { Location } from '@angular/common';
+import { EditarUserModalComponent } from 'src/app/modals/editar-user-modal/editar-user-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 declare var $: any;
 
@@ -43,7 +45,8 @@ export class RegistroMaestrosComponent implements OnInit{
     private maestrosService: MaestrosService,
     private router: Router,
     public activatedRoute: ActivatedRoute,
-    private facadeService: FacadeService
+    private facadeService: FacadeService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -109,7 +112,24 @@ export class RegistroMaestrosComponent implements OnInit{
     }
     console.log("Pasó la validación");
 
-    this.maestrosService.editarMaestro(this.maestro).subscribe(
+    this.maestro.rol = 'maestro';
+    const dialogRef = this.dialog.open(EditarUserModalComponent,{
+      data: this.maestro, //Se pasan valores a través del componente
+      height: '288px',
+      width: '328px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.isEdited){
+        alert("Maestro editado correctamente");
+        //Si se editó, entonces mandar al home
+        this.router.navigate(["home"]);
+      }else{
+        console.log("Edición cancelada");
+      }
+    });
+
+    /*this.maestrosService.editarMaestro(this.maestro).subscribe(
       (response)=>{
         alert("Maestro editado correctamente");
         console.log("Maestro editado: ", response);
@@ -118,7 +138,7 @@ export class RegistroMaestrosComponent implements OnInit{
       }, (error)=>{
         alert("No se pudo editar el maestro");
       }
-    );
+    );*/
   }
 
   public regresar() {

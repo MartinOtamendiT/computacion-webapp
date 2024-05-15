@@ -3,7 +3,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FacadeService } from 'src/app/services/facade.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { ValidatorService } from '../../services/tools/validator.service';
+import { EditarUserModalComponent } from 'src/app/modals/editar-user-modal/editar-user-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 declare var $: any;
 
@@ -37,8 +38,8 @@ export class RegistroMateriasComponent implements OnInit {
     private materiasService : MateriasService,
     private router: Router,
     public activatedRoute: ActivatedRoute,
-    private facadeService: FacadeService
-
+    private facadeService: FacadeService,
+    public dialog: MatDialog
     ) { }
 
   ngOnInit(): void {
@@ -122,7 +123,24 @@ export class RegistroMateriasComponent implements OnInit {
     }
     console.log("Pasó la validación");
 
-    this.materiasService.editarMateria(this.materia).subscribe(
+    this.materia.rol = 'materia';
+    const dialogRef = this.dialog.open(EditarUserModalComponent,{
+      data: this.materia, //Se pasan valores a través del componente
+      height: '288px',
+      width: '328px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.isEdited){
+        alert("Materia editada correctamente");
+        //Si se editó, entonces mandar al home
+        this.router.navigate(["home"]);
+      }else{
+        console.log("Edición cancelada");
+      }
+    });
+
+    /*this.materiasService.editarMateria(this.materia).subscribe(
       (response)=>{
         alert("Materia editada correctamente");
         console.log("Materia editada: ", response);
@@ -131,7 +149,7 @@ export class RegistroMateriasComponent implements OnInit {
       }, (error)=>{
         alert("No se pudo editar la materia");
       }
-    );
+    );*/
   }
 
 }

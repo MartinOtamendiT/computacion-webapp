@@ -37,6 +37,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { RegistroMateriasComponent } from './partials/registro-materias/registro-materias.component';
 import { MateriasScreenComponent } from './screens/materias-screen/materias-screen.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { EditarUserModalComponent } from './modals/editar-user-modal/editar-user-modal.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     EliminarUserModalComponent,
     GraficasScreenComponent,
     RegistroMateriasComponent,
-    MateriasScreenComponent
+    MateriasScreenComponent,
+    EditarUserModalComponent
   ],
   imports: [
     BrowserModule,

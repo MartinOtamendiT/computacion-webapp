@@ -3,6 +3,8 @@ import { ActivatedRoute ,Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FacadeService } from 'src/app/services/facade.service';
 import { AlumnosService } from 'src/app/services/alumnos.service';
+import { EditarUserModalComponent } from 'src/app/modals/editar-user-modal/editar-user-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 declare var $: any;
 
@@ -34,8 +36,9 @@ export class RegistroAlumnosComponent implements OnInit {
     private alumnosService: AlumnosService,
     private router: Router,
     public activatedRoute: ActivatedRoute,
-    private facadeService: FacadeService
-     ) { }
+    private facadeService: FacadeService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     if(this.activatedRoute.snapshot.params['id'] != undefined){
@@ -98,7 +101,24 @@ export class RegistroAlumnosComponent implements OnInit {
     }
     console.log("Pasó la validación");
 
-    this.alumnosService.editarAlumno(this.alumno).subscribe(
+    this.alumno.rol = 'alumno';
+    const dialogRef = this.dialog.open(EditarUserModalComponent,{
+      data: this.alumno, //Se pasan valores a través del componente
+      height: '288px',
+      width: '328px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.isEdited){
+        alert("Alumno editado correctamente");
+        //Si se editó, entonces mandar al home
+        this.router.navigate(["home"]);
+      }else{
+        console.log("Edición cancelada");
+      }
+    });
+
+    /*this.alumnosService.editarAlumno(this.alumno).subscribe(
       (response)=>{
         alert("Alumno editado correctamente");
         console.log("Alumno editado: ", response);
@@ -107,7 +127,7 @@ export class RegistroAlumnosComponent implements OnInit {
       }, (error)=>{
         alert("No se pudo editar el alumno");
       }
-    );
+    );*/
   }
 
   //Funciones para password
