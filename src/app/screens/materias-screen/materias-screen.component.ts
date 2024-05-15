@@ -19,7 +19,7 @@ export class MateriasScreenComponent implements OnInit{
   public lista_materias: any[] = [];
 
   //Para la tabla
-  displayedColumns: string[] = ['NRC', 'nombre_materia', 'seccion', 'dias_materia', 'horario', 'salon', 'programa'];
+  displayedColumns: string[] = ['NRC', 'nombre_materia', 'seccion', 'dias_materia', 'horario', 'salon', 'programa', 'editar', 'eliminar'];
   dataSource = new MatTableDataSource<DatosMaterias>(this.lista_materias as DatosMaterias[]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -94,29 +94,28 @@ export class MateriasScreenComponent implements OnInit{
   }
 
    //Funcion para editar
-   public goEditar(idUser: number){
-    this.router.navigate(["registro-usuarios/maestro/"+idUser]);
+  public goEditar(idMateria: number){
+    this.router.navigate(["registro-materias/"+idMateria]);
   }
 
-  public delete(idUser: number){
+  public delete(idMateria: number){
     const dialogRef = this.dialog.open(EliminarUserModalComponent,{
-      data: {id: idUser, rol: 'maestro'}, //Se pasan valores a través del componente
+      data: {id: idMateria, rol: 'materia'}, //Se pasan valores a través del componente
       height: '288px',
       width: '328px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result.isDelete){
-        console.log("Maestro eliminado");
+        console.log("Materia eliminada");
         //Recargar página
         window.location.reload();
       }else{
-        alert("Maestro no eliminado ");
-        console.log("No se eliminó al maestro");
+        alert("Materia no eliminada");
+        console.log("No se eliminó a la materia");
       }
     });
   }
-
 }//Cierre de la clase
 
 //Esto va fuera de la llave que cierra la clase

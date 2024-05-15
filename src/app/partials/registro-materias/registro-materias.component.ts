@@ -30,7 +30,7 @@ export class RegistroMateriasComponent implements OnInit {
   public editar: boolean = false;
   public errors: any = {};
   public materia : any = {};
-
+  public idMateria : Number = 0;
 
   constructor(
     private location : Location,
@@ -41,21 +41,32 @@ export class RegistroMateriasComponent implements OnInit {
 
     ) { }
 
-  public idMateria : Number = 0;
-
   ngOnInit(): void {
     //El primer if valida si existe un parámetro en la URL
     if(this.activatedRoute.snapshot.params['id'] != undefined){
       this.editar = true;
       //Asignamos a nuestra variable global el valor del ID que viene por la URL
       this.idMateria = this.activatedRoute.snapshot.params['id'];
-      //Al iniciar la vista asignamos los datos del user
-      this.materia = this.datos_materia;
+      console.log("ID Materia: ", this.idMateria);
+
+      //Obtenemos los datos de la materia y se muestran en pantalla.
+      this.materiasService.getMateriaByID(this.idMateria).subscribe(
+        (response)=>{
+          this.materia = response;
+          //Agregamos valores faltantes
+          this.materia.nrc = response.NRC;
+          this.materia.horario_inicio = response.horario.split("-")[0];
+          this.materia.horario_fin = response.horario.split("-")[1];
+          console.log("Datos materia: ", this.materia);
+        }, (error)=>{
+          alert("No se pudieron obtener los datos de la materia para editar");
+          console.log(error)
+        }
+      );
     }else{
       this.materia = this.materiasService.esquemaMateria();
       this.token = this.facadeService.getSessionToken();
     }
-
   }
 
   dias: dias_a_impartir[] = [
@@ -84,7 +95,7 @@ export class RegistroMateriasComponent implements OnInit {
     if (!$.isEmptyObject(this.errors)) {
       return false;
     }
-    
+
     this.materiasService.registrarMateria(this.materia).subscribe(
       (response)=>{
         alert("Materia registrada correctamente");
@@ -114,7 +125,7 @@ export class RegistroMateriasComponent implements OnInit {
     this.materiasService.editarMateria(this.materia).subscribe(
       (response)=>{
         alert("Materia editada correctamente");
-        console.log("Materia editado: ", response);
+        console.log("Materia editada: ", response);
         //Si se editó, entonces mandar al home
         this.router.navigate(["home"]);
       }, (error)=>{

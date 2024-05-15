@@ -86,8 +86,8 @@ export class MateriasService {
   }
 
   //Obtener una sola materia dependiendo su ID
-  public getMateriaByID(idUser: Number){
-    return this.http.get<any>(`${environment.url_api}/materia/?id=${idUser}`,httpOptions);
+  public getMateriaByID(idMateria: Number){
+    return this.http.get<any>(`${environment.url_api}/materia/?id=${idMateria}`,httpOptions);
   }
 
 
