@@ -20,10 +20,11 @@ interface programa_educativo {
 @Component({
   selector: 'app-registro-materias',
   templateUrl: './registro-materias.component.html',
-  styleUrls: ['./registro-materias.component.scss']
+  styleUrls: ['./registro-materias.component.scss'],
 })
 export class RegistroMateriasComponent implements OnInit {
 
+  public tipo: string = "registro-usuarios";
   @Input() datos_materia : any = {};
 
   //public materias: any = {};
@@ -87,7 +88,6 @@ export class RegistroMateriasComponent implements OnInit {
   public regresar() {
     this.location.back();
   }
-
   public registrar() {
     //Validar
     this.errors = [];

@@ -19,7 +19,9 @@ export class MateriasScreenComponent implements OnInit{
   public lista_materias: any[] = [];
 
   //Para la tabla
-  displayedColumns: string[] = ['NRC', 'nombre_materia', 'seccion', 'dias_materia', 'horario', 'salon', 'programa', 'editar', 'eliminar'];
+  adminActions : string[] = ['editar', 'eliminar'];
+
+  displayedColumns: string[] = ['NRC', 'nombre_materia', 'seccion', 'dias_materia', 'horario', 'salon', 'programa'];
   dataSource = new MatTableDataSource<DatosMaterias>(this.lista_materias as DatosMaterias[]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -34,6 +36,11 @@ export class MateriasScreenComponent implements OnInit{
   ngOnInit(): void {
     this.name_user = this.facadeService.getUserCompleteName();
     this.rol = this.facadeService.getUserGroup();
+
+    if(this.rol === 'administrador') {
+      this.displayedColumns = [...this.displayedColumns, ...this.adminActions];
+    }
+
     //Validar que haya inicio de sesión
     //Obtengo el token del login
     this.token = this.facadeService.getSessionToken();

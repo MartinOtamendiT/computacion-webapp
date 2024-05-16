@@ -38,7 +38,7 @@ import { RegistroMateriasComponent } from './partials/registro-materias/registro
 import { MateriasScreenComponent } from './screens/materias-screen/materias-screen.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { EditarUserModalComponent } from './modals/editar-user-modal/editar-user-modal.component';
-
+import { NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -79,9 +79,10 @@ import { EditarUserModalComponent } from './modals/editar-user-modal/editar-user
     MatCheckboxModule,
     HttpClientModule,
     NgChartsModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    NgxMaskDirective, NgxMaskPipe
   ],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
