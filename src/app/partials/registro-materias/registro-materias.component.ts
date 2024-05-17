@@ -24,7 +24,7 @@ interface programa_educativo {
 })
 export class RegistroMateriasComponent implements OnInit {
 
-  public tipo: string = "registro-usuarios";
+  public tipo: string = "registro-materias";
   @Input() datos_materia : any = {};
 
   //public materias: any = {};
@@ -139,17 +139,6 @@ export class RegistroMateriasComponent implements OnInit {
         console.log("Edición cancelada");
       }
     });
-
-    /*this.materiasService.editarMateria(this.materia).subscribe(
-      (response)=>{
-        alert("Materia editada correctamente");
-        console.log("Materia editada: ", response);
-        //Si se editó, entonces mandar al home
-        this.router.navigate(["home"]);
-      }, (error)=>{
-        alert("No se pudo editar la materia");
-      }
-    );*/
   }
 
 }

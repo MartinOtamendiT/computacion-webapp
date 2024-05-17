@@ -117,17 +117,6 @@ export class RegistroAlumnosComponent implements OnInit {
         console.log("Edición cancelada");
       }
     });
-
-    /*this.alumnosService.editarAlumno(this.alumno).subscribe(
-      (response)=>{
-        alert("Alumno editado correctamente");
-        console.log("Alumno editado: ", response);
-        //Si se editó, entonces mandar al home
-        this.router.navigate(["home"]);
-      }, (error)=>{
-        alert("No se pudo editar el alumno");
-      }
-    );*/
   }
 
   //Funciones para password

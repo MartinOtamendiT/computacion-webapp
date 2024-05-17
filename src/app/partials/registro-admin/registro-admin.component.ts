@@ -120,17 +120,6 @@ export class RegistroAdminComponent implements OnInit {
         console.log("Edición cancelada");
       }
     });
-
-    /*this.administradoresService.editarAdmin(this.admin).subscribe(
-      (response)=>{
-        alert("Administrador editado correctamente");
-        console.log("Admin editado: ", response);
-        //Si se editó, entonces mandar al home
-        this.router.navigate(["home"]);
-      }, (error)=>{
-        alert("No se pudo editar el administrador");
-      }
-    );*/
   }
 
   //Funciones para password

@@ -128,17 +128,6 @@ export class RegistroMaestrosComponent implements OnInit{
         console.log("Edición cancelada");
       }
     });
-
-    /*this.maestrosService.editarMaestro(this.maestro).subscribe(
-      (response)=>{
-        alert("Maestro editado correctamente");
-        console.log("Maestro editado: ", response);
-        //Si se editó, entonces mandar al home
-        this.router.navigate(["home"]);
-      }, (error)=>{
-        alert("No se pudo editar el maestro");
-      }
-    );*/
   }
 
   public regresar() {

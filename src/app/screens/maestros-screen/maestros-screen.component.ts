@@ -19,7 +19,9 @@ export class MaestrosScreenComponent implements OnInit{
   public lista_maestros: any[] = [];
 
   //Para la tabla
-  displayedColumns: string[] = ['clave_maestro', 'nombre', 'email', 'fecha_nacimiento', 'cubiculo', 'area_investigacion', 'rfc', 'telefono', 'editar', 'eliminar'];
+  adminActions : string[] = ['editar', 'eliminar'];
+  displayedColumns: string[] = ['clave_maestro', 'nombre', 'email', 'fecha_nacimiento', 'cubiculo', 'area_investigacion', 'rfc', 'telefono'];
+
   dataSource = new MatTableDataSource<DatosUsuario>(this.lista_maestros as DatosUsuario[]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -34,7 +36,11 @@ export class MaestrosScreenComponent implements OnInit{
   ngOnInit(): void {
     this.name_user = this.facadeService.getUserCompleteName();
     this.rol = this.facadeService.getUserGroup();
-    
+
+    if(this.rol === 'administrador') {
+      this.displayedColumns = [...this.displayedColumns, ...this.adminActions];
+    }
+
     //Validar que haya inicio de sesión
     //Obtengo el token del login
     this.token = this.facadeService.getSessionToken();
